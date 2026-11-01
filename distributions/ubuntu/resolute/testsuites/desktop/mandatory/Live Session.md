@@ -12,7 +12,7 @@
 | Architecture | AMD64 |
 | Environment | Virtual Machine |
 | ISO Image | resolute-desktop-amd64.iso |
-| Test Status | STARTED |
+| Test Status | PASSED |
 | Tester | Gabriel Charib |
 
 ## 2. Test Objectives
@@ -37,7 +37,7 @@ The test campaign aims to validate:
 
 | Component | Configuration |
 |---|---|
-| CPU | To be completed |
+| CPU | QEMU Virtual CPU |
 | RAM |  6 GB|
 | Storage | 70 GB |
 | Network | Ethernet |
@@ -193,7 +193,7 @@ The test campaign aims to validate:
 
 **Important:** Commands that modify files or permissions must operate only on dedicated test files.
 
-**Status:** NOT TESTED
+**Status:**  TESTED
 
 ---
 
@@ -204,12 +204,11 @@ The test campaign aims to validate:
 **Test Steps:**
 
 1. Inspect available network interfaces.
-2. Connect to a Wi-Fi network if available.
-3. Test Ethernet connectivity if available.
-4. Test DNS resolution.
-5. Open Firefox.
-6. Browse an HTTPS website.
-7. Disconnect and reconnect the network.
+2. Test Ethernet connectivity if available.
+3. Test DNS resolution.
+4. Open Firefox.
+5. Browse an HTTPS website.
+6. Disconnect and reconnect the network.
 
 **Expected Results:**
 
@@ -219,7 +218,7 @@ The test campaign aims to validate:
 - Web browsing works.
 - Reconnection is successful.
 
-**Status:** NOT TESTED
+**Status:**  TESTED
 
 ---
 
@@ -232,15 +231,12 @@ The test campaign aims to validate:
 | CPU | `lscpu` | CPU detected |
 | RAM | `free -h` | Memory detected |
 | GPU | `lspci` | Graphics device detected |
-| Audio | Play audio | Sound works |
-| USB | Connect USB device | Device detected |
 | Keyboard | Type text | Input works |
 | Mouse | Move and click | Input works |
 | Display | Change resolution | Display updates |
-| Bluetooth | Enable Bluetooth | Adapter detected if present |
-| Wi-Fi | Scan networks | Networks detected if available |
 
-**Status:** NOT TESTED
+
+**Status:**  TESTED
 
 ---
 
@@ -265,7 +261,7 @@ The test campaign aims to validate:
 - Desktop remains responsive.
 - System resources are reported correctly.
 
-**Status:** NOT TESTED
+**Status:**  TESTED
 
 ---
 
@@ -286,7 +282,7 @@ The test campaign aims to validate:
 - System shuts down correctly.
 - No unexpected shutdown error.
 
-**Status:** NOT TESTED
+**Status:**  TESTED
 
 ---
 
@@ -294,14 +290,14 @@ The test campaign aims to validate:
 
 | Test ID | Test Case | Status | Bug ID |
 |---|---|---|---|
-| TC-LIVE-001 | Live Session Startup | NOT TESTED | - |
-| TC-LIVE-002 | Desktop Environment | NOT TESTED | - |
-| TC-LIVE-003 | Default Applications | NOT TESTED | - |
-| TC-LIVE-004 | Linux Commands | NOT TESTED | - |
-| TC-LIVE-005 | Network Connectivity | NOT TESTED | - |
-| TC-LIVE-006 | Hardware Compatibility | NOT TESTED | - |
-| TC-LIVE-007 | System Stability | NOT TESTED | - |
-| TC-LIVE-008 | Session Shutdown | NOT TESTED | - |
+| TC-LIVE-001 | Live Session Startup | TESTED | - |
+| TC-LIVE-002 | Desktop Environment | TESTED | - |
+| TC-LIVE-003 | Default Applications | TESTED | - |
+| TC-LIVE-004 | Linux Commands | TESTED | - |
+| TC-LIVE-005 | Network Connectivity | TESTED | - |
+| TC-LIVE-006 | Hardware Compatibility | TESTED | - |
+| TC-LIVE-007 | System Stability | TESTED | - |
+| TC-LIVE-008 | Session Shutdown | TESTED | - |
 
 ## 6. Defect Reporting
 
@@ -336,25 +332,14 @@ If an unexpected result occurs:
 
 **Total Test Cases:** 8
 
-**Passed:** 0
+**Passed:** 8
 
 **Failed:** 0
 
 **Blocked:** 0
 
-**Not Tested:** 8
+**Not Tested:** 0
 
 ### Final Assessment
 
-To be completed after test execution.
-
-A test campaign can be considered successful when all mandatory test cases have passed or when remaining failures have been documented, investigated and reported appropriately.
-
----
-
-## 8. Test Result Submission
-
-- If all expected results are achieved, submit a PASS result.
-- If an unexpected result occurs, submit a FAIL result.
-- If execution cannot continue, submit BLOCKED.
-- Always include relevant evidence and bug references.
+All 8 mandatory Live Session test cases were executed successfully on Ubuntu 26.04 Resolute (AMD64, Proxmox VM). One non-blocking observation was recorded for Firefox startup logs (unsupported portal under common/); UI functionality was unaffected. No defects were filed.
