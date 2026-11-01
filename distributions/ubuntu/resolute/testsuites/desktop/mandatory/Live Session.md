@@ -14,6 +14,8 @@
 | ISO Image | resolute-desktop-amd64.iso |
 | Test Status | PASSED |
 | Tester | Gabriel Charib |
+| Results submitted | Yes – TestObserve |
+| Submission date | 2026-11-01 |
 
 ## 2. Test Objectives
 
@@ -343,3 +345,7 @@ If an unexpected result occurs:
 ### Final Assessment
 
 All 8 mandatory Live Session test cases were executed successfully on Ubuntu 26.04 Resolute (AMD64, Proxmox VM). One non-blocking observation was recorded for Firefox startup logs (unsupported portal under common/); UI functionality was unaffected. No defects were filed.
+
+**Submitted to:** TestObserve  
+**Date:** 2026-11-01  
+**Result:** PASS
