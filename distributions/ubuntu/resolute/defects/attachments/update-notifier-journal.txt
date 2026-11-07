@@ -1,0 +1,272 @@
+# Attachment for Launchpad bug: update-notifier GTK assertions
+# Captured: Saturday 2026-11-07 00:47 CET (2026-11-06T23:47:23Z)
+# Host: test-Standard-PC-i440FX-PIIX-1996
+# Boot started: 2026-11-01 21:05 CET
+# Observation window: 2026-11-01 → 2026-11-07 (same boot, PID 3369 still alive)
+# Note: folder name qa-20261106T232125Z is UTC; local calendar day of capture is 7 Nov 2026
+
+==============================================================================
+# 1) Ubuntu release
+==============================================================================
+Description:	Ubuntu 26.04.1 LTS
+Release:	26.04
+Linux test-Standard-PC-i440FX-PIIX-1996 7.0.0-42-generic #42-Ubuntu SMP PREEMPT_DYNAMIC Thu Oct 15 08:06:44 UTC 2026 x86_64 GNU/Linux
+
+==============================================================================
+# 2) Package versions
+==============================================================================
+update-notifier:
+  Installed: 3.207.2
+  Candidate: 3.207.2
+  Version table:
+ *** 3.207.2 500
+        500 http://be.archive.ubuntu.com/ubuntu resolute-updates/main amd64 Packages
+        500 http://security.ubuntu.com/ubuntu resolute-security/main amd64 Packages
+        100 /var/lib/dpkg/status
+     3.207 500
+        500 http://be.archive.ubuntu.com/ubuntu resolute/main amd64 Packages
+update-notifier-common:
+  Installed: 3.207.2
+  Candidate: 3.207.2
+  Version table:
+ *** 3.207.2 500
+        500 http://be.archive.ubuntu.com/ubuntu resolute-updates/main amd64 Packages
+        500 http://security.ubuntu.com/ubuntu resolute-security/main amd64 Packages
+        100 /var/lib/dpkg/status
+     3.207 500
+        500 http://be.archive.ubuntu.com/ubuntu resolute/main amd64 Packages
+gnome-shell:
+  Installed: 50.1-0ubuntu1.5
+  Candidate: 50.1-0ubuntu1.5
+  Version table:
+ *** 50.1-0ubuntu1.5 500
+        500 http://be.archive.ubuntu.com/ubuntu resolute-updates/main amd64 Packages
+        500 http://security.ubuntu.com/ubuntu resolute-security/main amd64 Packages
+        100 /var/lib/dpkg/status
+     50.1-0ubuntu1 500
+        500 http://be.archive.ubuntu.com/ubuntu resolute/main amd64 Packages
+libgtk-3-0t64:
+  Installed: 3.24.52-0ubuntu1
+  Candidate: 3.24.52-0ubuntu1
+  Version table:
+ *** 3.24.52-0ubuntu1 500
+        500 http://be.archive.ubuntu.com/ubuntu resolute/main amd64 Packages
+        100 /var/lib/dpkg/status
+libayatana-appindicator3-1:
+  Installed: 0.5.94-1build1
+  Candidate: 0.5.94-1build1
+  Version table:
+ *** 0.5.94-1build1 500
+        500 http://be.archive.ubuntu.com/ubuntu resolute/main amd64 Packages
+        100 /var/lib/dpkg/status
+
+==============================================================================
+# 3) Session / environment
+==============================================================================
+ Static hostname: test-Standard-PC-i440FX-PIIX-1996
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 1c42e47886ef4740931518e95755ada0
+         Boot ID: 9681336a785743c2826e8417891dd2fd
+  Virtualization: kvm
+Operating System: Ubuntu 26.04.1 LTS
+          Kernel: Linux 7.0.0-42-generic
+    Architecture: x86-64
+ Hardware Vendor: QEMU
+  Hardware Model: Standard PC _i440FX + PIIX, 1996_
+Hardware Version: pc-i440fx-10.1
+Firmware Version: rel-1.17.0-0-gb52ca86e094d-prebuilt.qemu.org
+   Firmware Date: Tue 2014-04-01
+    Firmware Age: 12y 7month 6d
+
+XDG_SESSION_TYPE=tty
+XDG_CURRENT_DESKTOP=unknown
+WAYLAND_DISPLAY=unset
+DISPLAY=unset
+LANG=en_US.UTF-8
+Name=test
+Display=
+Remote=no
+Desktop=
+Type=wayland
+
+==============================================================================
+# 4) Pending upgrades (at capture time)
+==============================================================================
+Listing...
+base-files/resolute-updates 14ubuntu6.3 amd64 [upgradable from: 14ubuntu6.2]
+bpftool/resolute-updates 7.7.0+7.0.0-43.43 amd64 [upgradable from: 7.7.0+7.0.0-42.42]
+ca-certificates/resolute-updates,resolute-security 20260816ubuntu0.26.04.2 all [upgradable from: 20260816ubuntu0.26.04.1]
+linux-generic-hwe-24.04/resolute-updates 7.0.0-43.43 amd64 [upgradable from: 7.0.0-42.42]
+linux-generic-hwe-26.04/resolute-updates 7.0.0-43.43 amd64 [upgradable from: 7.0.0-42.42]
+linux-headers-generic-hwe-26.04/resolute-updates 7.0.0-43.43 amd64 [upgradable from: 7.0.0-42.42]
+linux-image-generic-hwe-26.04/resolute-updates 7.0.0-43.43 amd64 [upgradable from: 7.0.0-42.42]
+linux-libc-dev/resolute-updates 7.0.0-43.43 amd64 [upgradable from: 7.0.0-42.42]
+linux-perf/resolute-updates 7.0.0-43.43 amd64 [upgradable from: 7.0.0-42.42]
+linux-tools-common/resolute-updates 7.0.0-43.43 all [upgradable from: 7.0.0-42.42]
+vim-common/resolute-updates 2:9.1.2141-1ubuntu4.10 all [upgradable from: 2:9.1.2141-1ubuntu4.9]
+vim-tiny/resolute-updates 2:9.1.2141-1ubuntu4.10 amd64 [upgradable from: 2:9.1.2141-1ubuntu4.9]
+xxd/resolute-updates 2:9.1.2141-1ubuntu4.10 amd64 [upgradable from: 2:9.1.2141-1ubuntu4.9]
+
+==============================================================================
+# 5) update-notifier process state
+==============================================================================
+    PID    PPID USER         ELAPSED CMD
+   3369    2736 test      5-03:39:49 /usr/bin/update-notifier
+
+==============================================================================
+# 6) Counts from this boot
+==============================================================================
+gtk_widget_get_scale_factor: 24
+g_object_get_data: 1
+libayatana-appindicator deprecation: 4
+total update-notifier journal lines: 29
+
+==============================================================================
+# 7) Full journal for update-notifier this boot
+# Command: journalctl -b _COMM=update-notifier --no-pager
+==============================================================================
+Nov 01 21:06:41 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+Nov 01 21:06:48 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+Nov 01 21:06:48 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+Nov 01 21:19:26 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:19:26 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:19:26 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:41:25 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:41:25 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:41:25 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:41:25 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:41:25 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:41:25 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 02 00:32:48 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: g_object_get_data: assertion 'G_IS_OBJECT (object)' failed
+Nov 04 03:57:40 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 06:19:35 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 06:19:51 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 06:19:51 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 06:19:51 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 06:19:51 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 09:19:50 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+Nov 04 09:19:50 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 05 04:33:40 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 05 06:18:41 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 05 06:19:07 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 06 09:18:40 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 07 00:09:38 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 07 00:09:38 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 07 00:09:38 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 07 00:09:38 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+
+==============================================================================
+# 8) Broader journal hits: update-notifier / gtk_widget_get_scale_factor / G_IS_OBJECT
+# Command: journalctl -b --no-pager | grep -E 'update-notifier|gtk_widget_get_scale_factor|g_object_get_data: assertion'
+==============================================================================
+Nov 01 21:05:22 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Started update-notifier-download.timer - Download data for packages that failed at package install time.
+Nov 01 21:05:22 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Started update-notifier-motd.timer - Check to see whether there is a new version of Ubuntu available.
+Nov 01 21:05:23 test-Standard-PC-i440FX-PIIX-1996 systemd[1395]: Started update-notifier-crash.path - Path trigger for Apport crash notifications.
+Nov 01 21:05:23 test-Standard-PC-i440FX-PIIX-1996 systemd[1395]: Started update-notifier-release.path - Path trigger for new release of Ubuntu notifications.
+Nov 01 21:06:35 test-Standard-PC-i440FX-PIIX-1996 systemd[2736]: Started update-notifier-crash.path - Path trigger for Apport crash notifications.
+Nov 01 21:06:35 test-Standard-PC-i440FX-PIIX-1996 systemd[2736]: Started update-notifier-release.path - Path trigger for new release of Ubuntu notifications.
+Nov 01 21:06:38 test-Standard-PC-i440FX-PIIX-1996 systemd[1395]: Stopped update-notifier-crash.path - Path trigger for Apport crash notifications.
+Nov 01 21:06:38 test-Standard-PC-i440FX-PIIX-1996 systemd[1395]: Stopped update-notifier-release.path - Path trigger for new release of Ubuntu notifications.
+Nov 01 21:06:41 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+Nov 01 21:06:48 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+Nov 01 21:06:48 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+Nov 01 21:07:04 test-Standard-PC-i440FX-PIIX-1996 update-notifier.desktop[3928]: WARNING:root:timeout reached, exiting
+Nov 01 21:10:20 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Starting update-notifier-download.service - Download data for packages that failed at package install time...
+Nov 01 21:10:20 test-Standard-PC-i440FX-PIIX-1996 systemd[2736]: update-notifier-crash.service - Notification regarding a crash report skipped, unmet condition check ConditionPathExists=!/var/lib/apport/autoreport
+Nov 01 21:10:20 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Nov 01 21:10:20 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Finished update-notifier-download.service - Download data for packages that failed at package install time.
+Nov 01 21:19:26 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:19:26 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:19:26 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:41:25 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:41:25 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:41:25 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:41:25 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:41:25 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:41:25 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 02 00:32:48 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: g_object_get_data: assertion 'G_IS_OBJECT (object)' failed
+Nov 02 21:10:22 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Starting update-notifier-download.service - Download data for packages that failed at package install time...
+Nov 02 21:10:22 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Nov 02 21:10:22 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Finished update-notifier-download.service - Download data for packages that failed at package install time.
+Nov 03 21:10:28 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Starting update-notifier-download.service - Download data for packages that failed at package install time...
+Nov 03 21:10:28 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Nov 03 21:10:28 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Finished update-notifier-download.service - Download data for packages that failed at package install time.
+Nov 04 03:57:40 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 03:57:41 test-Standard-PC-i440FX-PIIX-1996 pkexec[36628]: test: Executing command [USER=root] [TTY=unknown] [CWD=/home/test] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+Nov 04 06:19:35 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 06:19:51 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 06:19:51 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 06:19:51 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 06:19:51 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 09:19:50 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+Nov 04 09:19:50 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 04 21:10:32 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Starting update-notifier-download.service - Download data for packages that failed at package install time...
+Nov 04 21:10:32 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Nov 04 21:10:32 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Finished update-notifier-download.service - Download data for packages that failed at package install time.
+Nov 05 04:33:40 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 05 04:33:40 test-Standard-PC-i440FX-PIIX-1996 pkexec[46058]: test: Executing command [USER=root] [TTY=unknown] [CWD=/home/test] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+Nov 05 06:18:41 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 05 06:19:07 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 05 21:10:35 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Starting update-notifier-download.service - Download data for packages that failed at package install time...
+Nov 05 21:10:35 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Nov 05 21:10:35 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Finished update-notifier-download.service - Download data for packages that failed at package install time.
+Nov 06 09:18:40 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 06 09:18:41 test-Standard-PC-i440FX-PIIX-1996 pkexec[58008]: test: Executing command [USER=root] [TTY=unknown] [CWD=/home/test] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+Nov 06 21:10:37 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Starting update-notifier-download.service - Download data for packages that failed at package install time...
+Nov 06 21:10:37 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Nov 06 21:10:37 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Finished update-notifier-download.service - Download data for packages that failed at package install time.
+Nov 06 23:57:41 test-Standard-PC-i440FX-PIIX-1996 pkexec[64291]: test: Executing command [USER=root] [TTY=unknown] [CWD=/home/test] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+Nov 06 23:57:41 test-Standard-PC-i440FX-PIIX-1996 update-notifier.desktop[64296]: /var/lib/dpkg/lock:
+Nov 07 00:00:41 test-Standard-PC-i440FX-PIIX-1996 pkexec[65559]: test: Executing command [USER=root] [TTY=unknown] [CWD=/home/test] [COMMAND=/usr/lib/update-notifier/package-system-locked]
+Nov 07 00:06:04 test-Standard-PC-i440FX-PIIX-1996 systemd[2736]: Starting update-notifier-release.service - Notification regarding a new release of Ubuntu...
+Nov 07 00:06:25 test-Standard-PC-i440FX-PIIX-1996 systemd[2736]: Finished update-notifier-release.service - Notification regarding a new release of Ubuntu.
+Nov 07 00:09:38 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 07 00:09:38 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 07 00:09:38 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 07 00:09:38 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+
+==============================================================================
+# 9) Context around first GTK assertion burst (±2 min)
+==============================================================================
+# First assertion timestamp: Nov 01 21:19:26
+Nov 01 21:19:26 test-Standard-PC-i440FX-PIIX-1996 gnome-shell[3244]: Type GITypeInfo of property AccountsService.User::password-mode does not match return type GITypeInfo of getter get_password_mode. Falling back to slow path
+Nov 01 21:19:26 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:19:26 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:19:26 test-Standard-PC-i440FX-PIIX-1996 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+Nov 01 21:20:12 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Starting sysstat-collect.service - system activity accounting tool...
+Nov 01 21:20:12 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Starting systemd-tmpfiles-clean.service - Cleanup of Temporary Directories...
+Nov 01 21:20:12 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: sysstat-collect.service: Deactivated successfully.
+Nov 01 21:20:12 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Finished sysstat-collect.service - system activity accounting tool.
+Nov 01 21:20:12 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Nov 01 21:20:12 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: Finished systemd-tmpfiles-clean.service - Cleanup of Temporary Directories.
+Nov 01 21:20:20 test-Standard-PC-i440FX-PIIX-1996 anacron[962]: Job `cron.monthly' started
+Nov 01 21:20:20 test-Standard-PC-i440FX-PIIX-1996 anacron[14264]: Updated timestamp for job `cron.monthly' to 2026-11-01
+Nov 01 21:20:20 test-Standard-PC-i440FX-PIIX-1996 anacron[962]: Job `cron.monthly' terminated
+
+==============================================================================
+# 10) Graphics / DRM info
+==============================================================================
+00:02.0 VGA compatible controller [0300]: Device [1234:1111] (rev 02)
+
+bochs                  24576  2
+
+Nov 01 21:05:04 localhost.localdomain kernel: ACPI: RSDP 0x00000000000F5290 000014 (v00 BOCHS )
+Nov 01 21:05:04 localhost.localdomain kernel: ACPI: RSDT 0x00000000BFFE3B59 000034 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+Nov 01 21:05:04 localhost.localdomain kernel: ACPI: FACP 0x00000000BFFE3973 000074 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+Nov 01 21:05:04 localhost.localdomain kernel: ACPI: DSDT 0x00000000BFFDF040 004933 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+Nov 01 21:05:04 localhost.localdomain kernel: ACPI: APIC 0x00000000BFFE39E7 000080 (v03 BOCHS  BXPC     00000001 BXPC 00000001)
+Nov 01 21:05:04 localhost.localdomain kernel: ACPI: SSDT 0x00000000BFFE3A67 0000CA (v01 BOCHS  VMGENID  00000001 BXPC 00000001)
+Nov 01 21:05:04 localhost.localdomain kernel: ACPI: WAET 0x00000000BFFE3B31 000028 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+Nov 01 21:05:04 localhost.localdomain kernel: ACPI: bus type drm_connector registered
+Nov 01 21:05:04 localhost.localdomain kernel: simple-framebuffer simple-framebuffer.0: [drm] Registered 1 planes with drm panic
+Nov 01 21:05:04 localhost.localdomain kernel: [drm] Initialized simpledrm 1.0.0 for simple-framebuffer.0 on minor 0
+Nov 01 21:05:04 localhost.localdomain kernel: simple-framebuffer simple-framebuffer.0: [drm] fb0: simpledrmdrmfb frame buffer device
+Nov 01 21:05:06 test-Standard-PC-i440FX-PIIX-1996 systemd[1]: modprobe@drm.service - Load Kernel Module drm skipped, unmet condition check ConditionKernelModuleLoaded=!drm
+Nov 01 21:05:09 test-Standard-PC-i440FX-PIIX-1996 kernel: bochs-drm 0000:00:02.0: vgaarb: deactivate vga console
+Nov 01 21:05:09 test-Standard-PC-i440FX-PIIX-1996 kernel: [drm] Found bochs VGA, ID 0xb0c5.
+Nov 01 21:05:09 test-Standard-PC-i440FX-PIIX-1996 kernel: [drm] Framebuffer size 16384 kB @ 0xfd000000, mmio @ 0xfea50000.
+Nov 01 21:05:09 test-Standard-PC-i440FX-PIIX-1996 kernel: bochs-drm 0000:00:02.0: [drm] Registered 1 planes with drm panic
+Nov 01 21:05:09 test-Standard-PC-i440FX-PIIX-1996 kernel: [drm] Initialized bochs-drm 1.0.0 for 0000:00:02.0 on minor 0
+Nov 01 21:05:09 test-Standard-PC-i440FX-PIIX-1996 kernel: fbcon: bochs-drmdrmfb (fb0) is primary device
+Nov 01 21:05:09 test-Standard-PC-i440FX-PIIX-1996 kernel: bochs-drm 0000:00:02.0: [drm] fb0: bochs-drmdrmfb frame buffer device

@@ -1,0 +1,164 @@
+Summary:
+update-notifier repeatedly logs GTK critical assertions during Ubuntu 26.04.1 desktop session
+
+Package: update-notifier
+
+Importance suggestion: Low
+Security vulnerability: NO
+
+Bug Description:
+
+[Impact]
+update-notifier repeatedly emits GTK critical assertions in the journal during a normal Ubuntu Desktop session. The process does not crash and no data loss was observed, but the repeated assertions indicate invalid widget/object handling and deserve investigation.
+
+[Ubuntu release]
+Ubuntu 26.04.1 LTS (resolute)
+
+$ lsb_release -rd
+Description:	Ubuntu 26.04.1 LTS
+Release:	26.04
+
+[Package]
+update-notifier 3.207.2 (from resolute-updates)
+
+$ apt-cache policy update-notifier
+Installed: 3.207.2
+Candidate: 3.207.2
+
+Also installed:
+- update-notifier-common 3.207.2
+- gnome-shell 50.1-0ubuntu1.5
+- libgtk-3-0t64 3.24.52-0ubuntu1
+- libayatana-appindicator3-1 0.5.94-1build1
+
+[Environment]
+- Desktop session: Ubuntu GNOME on Wayland
+- Virtualization: QEMU/KVM
+- Graphics: Bochs VGA (bochs-drm / pci 1234:1111), no hardware 3D acceleration
+- Locale: en_US.UTF-8
+- Pending package updates were available during observation
+- Autostart: /etc/xdg/autostart/update-notifier.desktop (X-GNOME-Autostart-Delay=60)
+
+Important: This was observed in a QEMU/KVM guest with Bochs graphics. I am not claiming this affects all Ubuntu installations.
+
+[Steps to reproduce]
+1. Boot Ubuntu 26.04.1 Desktop
+2. Log into the Ubuntu GNOME Wayland session
+3. Leave some packages upgradable (do not install them yet)
+4. Keep the desktop session running
+5. Inspect logs:
+   journalctl -b _COMM=update-notifier --no-pager
+
+[Expected behavior]
+update-notifier checks for updates and shows notifications without GTK/GLib critical assertions.
+
+[Actual behavior]
+update-notifier keeps running, but repeatedly logs:
+
+  gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+
+Also observed once:
+
+  g_object_get_data: assertion 'G_IS_OBJECT (object)' failed
+
+On this boot:
+- 24 occurrences of gtk_widget_get_scale_factor assertion
+- 1 occurrence of G_IS_OBJECT assertion
+- 4 occurrences of AppIndicator deprecation warning
+- often in bursts of several identical lines at the same timestamp
+- same long-lived process: /usr/bin/update-notifier PID 3369
+- process started at login (2026-11-01 21:06:37) and remained alive for 5+ days
+
+[Reproducibility status]
+Confirmed on this host/session with pending updates available.
+
+Not yet fully determined:
+- whether it happens on every login
+- whether it only happens when updates are pending
+- whether it stops after installing updates
+- whether it still happens after a clean reboot on a fresh session
+- whether it reproduces outside QEMU/Bochs (clean ISO / bare metal / virtio-gpu)
+
+I can run these extra checks if useful.
+
+[Additional warning observed]
+Separately from the GTK assertions, update-notifier also logs:
+
+  libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+
+This is a deprecation warning. I am reporting it only as additional context; I am not claiming it is the root cause of the GTK assertions.
+
+[Logs]
+
+1) Full update-notifier journal for this boot:
+$ journalctl -b _COMM=update-notifier --no-pager
+
+2026-11-01T21:06:41+01:00 update-notifier[3369]: libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+2026-11-01T21:06:48+01:00 update-notifier[3369]: libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+2026-11-01T21:06:48+01:00 update-notifier[3369]: libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+2026-11-01T21:19:26+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-01T21:19:26+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-01T21:19:26+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-01T21:41:25+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-01T21:41:25+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-01T21:41:25+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-01T21:41:25+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-01T21:41:25+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-01T21:41:25+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-02T00:32:48+01:00 update-notifier[3369]: g_object_get_data: assertion 'G_IS_OBJECT (object)' failed
+2026-11-04T03:57:40+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-04T06:19:35+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-04T06:19:51+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-04T06:19:51+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-04T06:19:51+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-04T06:19:51+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-04T09:19:50+01:00 update-notifier[3369]: libayatana-appindicator is deprecated. Please use libayatana-appindicator-glib in newly written code.
+2026-11-04T09:19:50+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-05T04:33:40+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-05T06:18:41+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-05T06:19:07+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-06T09:18:40+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-07T00:09:38+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-07T00:09:38+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-07T00:09:38+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+2026-11-07T00:09:38+01:00 update-notifier[3369]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+
+2) Session start context (Wayland login + update-notifier start):
+2026-11-01 21:06:34 systemd-logind: New session of user test with type 'wayland'
+2026-11-01 21:06:36 gnome-shell: Running GNOME Shell (using mutter 50.1) as a Wayland display server
+2026-11-01 21:06:37 /usr/bin/update-notifier started as PID 3369
+2026-11-01 21:06:41 first AppIndicator deprecation warning
+2026-11-01 21:19:26 first GTK assertion burst
+
+3) Process:
+USER       PID  CMD
+test      3369  /usr/bin/update-notifier
+
+4) Relevant linked libraries (ldd /usr/bin/update-notifier):
+libgtk-3.so.0 => /usr/lib/x86_64-linux-gnu/libgtk-3.so.0
+libgdk-3.so.0 => /usr/lib/x86_64-linux-gnu/libgdk-3.so.0
+libnotify.so.4 => /usr/lib/x86_64-linux-gnu/libnotify.so.4
+libgobject-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0
+libglib-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0
+libayatana-appindicator3.so.1 => /usr/lib/x86_64-linux-gnu/libayatana-appindicator3.so.1
+
+5) Graphics/virt confirmation:
+$ systemd-detect-virt
+kvm
+$ lspci | grep -i vga
+00:02.0 VGA compatible controller: Device 1234:1111 (rev 02)
+
+[Notes / non-claims]
+- No session crash observed
+- No data loss observed
+- Suggested importance: Low
+- This is not a security vulnerability report
+- Possible causes (destroyed widget, bad reference, AppIndicator/GTK lifecycle issue) are hypotheses only; logs alone do not prove root cause
+
+[Request]
+Please investigate the GTK assertion path in update-notifier. I can provide more logs or retest on a clean VM if needed.
+
+Attachments to upload on Launchpad (local copies):
+- ~/Documents/ubuntu-qa/bugs/attachments/update-notifier-journal.txt
+- ~/Documents/ubuntu-qa/bugs/attachments/update-notifier-assertions.txt
+- ~/Documents/ubuntu-qa/bugs/attachments/environment.txt

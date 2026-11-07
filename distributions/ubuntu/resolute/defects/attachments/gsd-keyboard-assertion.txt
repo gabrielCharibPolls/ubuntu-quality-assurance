@@ -1,0 +1,14 @@
+# Attachment: gsd-keyboard g_variant_unref assertion
+# Captured: 2026-11-07 00:57 CET
+gnome-settings-daemon:
+  Installed: 50.0-1ubuntu1
+  Candidate: 50.0-1ubuntu1
+  Version table:
+ *** 50.0-1ubuntu1 500
+        500 http://be.archive.ubuntu.com/ubuntu resolute/main amd64 Packages
+        100 /var/lib/dpkg/status
+
+Nov 01 21:06:37 test-Standard-PC-i440FX-PIIX-1996 gsd-keyboard[3349]: g_variant_unref: assertion 'value != NULL' failed
+
+1982:Nov 01 21:06:37 test-Standard-PC-i440FX-PIIX-1996 dbus-daemon[966]: [system] Activating via systemd: service name='org.freedesktop.locale1' unit='dbus-org.freedesktop.locale1.service' requested by ':1.95' (uid=1000 pid=3349 comm="/usr/libexec/gsd-keyboard" label="unconfined")
+1991:Nov 01 21:06:37 test-Standard-PC-i440FX-PIIX-1996 gsd-keyboard[3349]: g_variant_unref: assertion 'value != NULL' failed
